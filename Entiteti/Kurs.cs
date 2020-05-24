@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Uprava.Entiteti
+{
+	public class Kurs
+	{
+		public virtual int KursId { get; set; }
+		public virtual Policajac Policajac { get; set; }
+		public virtual string Naziv { get; set; }
+		public virtual DateTime DatumZavrsetka { get; set; }
+	}
+}
