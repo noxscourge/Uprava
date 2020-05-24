@@ -15,13 +15,11 @@ namespace Uprava.Entiteti
 		public virtual string Tip { get; set; }
 		public virtual string Model { get; set; }
 		public virtual PolicijskaStanica pripadaStanici { get; set; }
-		//public virtual Patrola pripadaPatroli { get; set; }
+		public virtual Patrola pripadaPatroli { get; set; }
 
-		public virtual IList<Patrola> Patrole { get; set; }
 
 		public SluzbenoVozilo()
 		{
-			Patrole = new List<Patrola>();
 		}
 	}
 }

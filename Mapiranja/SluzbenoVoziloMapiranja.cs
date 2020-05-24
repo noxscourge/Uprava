@@ -25,6 +25,8 @@ namespace Uprava.Mapiranja
 
 			//References(x => x.pripadaPatroli).Column("PATROLAID");
 			References(x => x.pripadaStanici).Column("STANICAID").LazyLoad();
+			HasOne(x => x.pripadaPatroli).PropertyRef(nameof(Patrola.Vozilo));
+
 		}
 	}
 }

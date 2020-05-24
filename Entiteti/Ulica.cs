@@ -9,7 +9,7 @@ namespace Uprava.Entiteti
     public class Ulica
     {
         //metode
-        public virtual int Ulicaid { get; protected set; }
+        public virtual int UlicaId { get; protected set; }
         public virtual Policajac PripadaPolicajcu { get; set; }
 
         public virtual string Naziv { get; set; }

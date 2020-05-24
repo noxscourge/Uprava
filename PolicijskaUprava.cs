@@ -44,7 +44,7 @@ namespace Uprava
 		{
 			try
 			{
-				ISession s = DataLayer.GetSession();
+				/*ISession s = DataLayer.GetSession();
 				PolicijskaStanica p = s.Load<PolicijskaStanica>(1);
 
 				//koliko stanica sa brojem 1 ima sluzbenih vozila
@@ -52,6 +52,51 @@ namespace Uprava
 				//
 				MessageBox.Show((p.Naziv).ToString());
 				MessageBox.Show(p.Opstina);
+
+				s.Close();*/
+				ISession s = DataLayer.GetSession();
+				PolicijskaStanica p = s.Load<PolicijskaStanica>(1);
+				StringBuilder stringToDisplay = new StringBuilder();
+				stringToDisplay.AppendFormat("Ime stanice : {0}", p.StanicaId);
+				stringToDisplay.AppendLine();
+				stringToDisplay.AppendFormat("Naziv stanice:{0}", p.Naziv);
+				stringToDisplay.AppendLine();
+				stringToDisplay.AppendFormat("Adresa stanice {0}", p.Adresa);
+				stringToDisplay.AppendLine();
+				stringToDisplay.AppendFormat("Opstina stanice {0}", p.Opstina);
+				stringToDisplay.AppendLine();
+				stringToDisplay.AppendFormat("Datum osnivanja stanice {0}", p.DatumOsnivanja);
+				stringToDisplay.AppendLine();
+				stringToDisplay.AppendFormat("Sef stanice {0},{1},{2}", p.Sef.PolicajacId, p.Sef.Ime, p.Sef.Prezime);
+				stringToDisplay.AppendLine();
+				stringToDisplay.AppendFormat("Zamenik sefa stanice {0},{1},{2}", p.Zamenik.PolicajacId, p.Zamenik.Ime, p.Zamenik.Prezime);
+				stringToDisplay.AppendLine();
+				stringToDisplay.AppendFormat("Broj sluzbenih vozila {0}", p.BrojSluzbenihVozila);
+				stringToDisplay.AppendLine();
+				stringToDisplay.AppendFormat("Policajci:");
+				stringToDisplay.AppendLine();
+				foreach (var pol in p.Policajci)
+				{
+					stringToDisplay.AppendFormat("Policajac: Id={0} Ime={1} Prezime={2}", pol.PolicajacId, pol.Ime, pol.Prezime);
+					stringToDisplay.AppendLine();
+				}
+				stringToDisplay.AppendFormat("Objekti:");
+				stringToDisplay.AppendLine();
+				foreach (var obj in p.DrziObjekte)
+				{
+					stringToDisplay.AppendFormat("Objekat: Ime={0} Adresa={1}", obj.Ime, obj.Adresa);
+					stringToDisplay.AppendLine();
+				}
+				stringToDisplay.AppendFormat("Vozila:");
+				stringToDisplay.AppendLine();
+
+				foreach (var vozilo in p.SluzbenaVozila)
+				{
+					stringToDisplay.AppendFormat("Vozilo: Id={0} RegBr={1} ", vozilo.VoziloId, vozilo.RegistarskaOznaka);
+					stringToDisplay.AppendLine();
+				}
+
+				MessageBox.Show(stringToDisplay.ToString());
 
 				s.Close();
 
@@ -335,7 +380,7 @@ namespace Uprava
 				Ulica ul = s.Load<Ulica>(3);
 
 				MessageBox.Show(ul.Naziv);
-				MessageBox.Show	((ul.Ulicaid).ToString());
+				MessageBox.Show	((ul.UlicaId).ToString());
 				MessageBox.Show(ul.PripadaPolicajcu.Ime);
 
 

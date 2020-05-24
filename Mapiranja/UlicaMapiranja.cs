@@ -13,7 +13,7 @@ namespace Uprava.Mapiranja
         public UlicaMapiranja()
         {
             Table("ULICA");
-            Id(x => x.Ulicaid, "ULICAID").GeneratedBy.TriggerIdentity();
+            Id(x => x.UlicaId, "ULICAID").GeneratedBy.TriggerIdentity();
 
             Map(x => x.Naziv, "NAZIV");
             References(x => x.PripadaPolicajcu).Column("POLICAJACID").LazyLoad();
