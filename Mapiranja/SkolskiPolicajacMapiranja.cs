@@ -19,7 +19,7 @@ namespace Uprava.Mapiranja
 
 
             Map(x => x.NazivSkole, "NAZIV_SKOLE");
-            //Map(x => x.AdresaSkole, "ADRESA");
+            Map(x => x.AdresaSkole, "ADRESA");
             Map(x => x.BrojTelefonaSkole, "BR_TELEFONA_SKOLE");
             Map(x => x.OsobaZaKontakt, "OSOBA_ZA_KONTAKT");
             Map(x => x.SrednjaIliOsnovna, "SREDNJA_ILI_OSNOVNA");

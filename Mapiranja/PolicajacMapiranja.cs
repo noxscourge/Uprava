@@ -17,7 +17,7 @@ namespace Uprava.Mapiranja
 
 			Id(x => x.PolicajacId, "POLICAJACID").GeneratedBy.TriggerIdentity();
 
-			DiscriminateSubClassesOnColumn("TIP");
+			//DiscriminateSubClassesOnColumn("TIP");
 
 			Map(x => x.Ime, "IME");
 			Map(x => x.ImeRoditelja, "IME_RODITELJA");
@@ -41,26 +41,26 @@ namespace Uprava.Mapiranja
 	}
 
 
-	class VanredniPolicajacMapiranja : SubclassMap<VanredniPolicajac>
-	{
-		public VanredniPolicajacMapiranja()
-		{
-			DiscriminatorValue("VANREDNI");
+	//class VanredniPolicajacMapiranja : SubclassMap<VanredniPolicajac>
+	//{
+	//	public VanredniPolicajacMapiranja()
+	//	{
+	//		DiscriminatorValue("VANREDNI");
 
-			HasMany(x => x.Kursevi).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
-			HasMany(x => x.Sertifikati).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
-			HasMany(x => x.Vestine).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
-		}
-	}
+	//		HasMany(x => x.Kursevi).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
+	//		HasMany(x => x.Sertifikati).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
+	//		HasMany(x => x.Vestine).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
+	//	}
+	//}
 
-	class PozornikPolicajacjMapiranja : SubclassMap<PozornikPolicajac>
-	{
-		public PozornikPolicajacjMapiranja()
-		{
-			DiscriminatorValue("POZORNIK");
-			HasMany(x => x.Ulice).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
+	//class PozornikPolicajacjMapiranja : SubclassMap<PozornikPolicajac>
+	//{
+	//	public PozornikPolicajacjMapiranja()
+	//	{
+	//		DiscriminatorValue("POZORNIK");
+	//		HasMany(x => x.Ulice).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
 
-		}
-	}
+	//	}
+	//}
 
 }

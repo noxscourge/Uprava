@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FluentNHibernate;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
@@ -44,33 +45,33 @@ namespace Uprava
 		{
 			try
 			{
-				ISession s = DataLayer.GetSession();
-				IList<Policajac> listaPolicajca = s.QueryOver<Policajac>().List<Policajac>();
+				//ISession s = DataLayer.GetSession();
+				//IList<Policajac> listaPolicajca = s.QueryOver<Policajac>().List<Policajac>();
 
-				foreach (Policajac pol in listaPolicajca)
-				{
-					if (pol.GetType() == typeof(PozornikPolicajac))
-					{
-						PozornikPolicajac pozornik = (PozornikPolicajac)pol;
-						MessageBox.Show(pozornik.ToString());
-					}
+				//foreach (Policajac pol in listaPolicajca)
+				//{
+				//	if (pol.GetType() == typeof(PozornikPolicajac))
+				//	{
+				//		PozornikPolicajac pozornik = (PozornikPolicajac)pol;
+				//		MessageBox.Show(pozornik.ToString());
+				//	}
 
-					else if (pol.GetType() == typeof(VanredniPolicajac))
-					{
-						VanredniPolicajac vanredni = (VanredniPolicajac)pol;
-						MessageBox.Show(vanredni.ToString());
-					}
-					else if (pol.GetType() == typeof(SkolskiPolicajac))
-					{
-						SkolskiPolicajac skolski = (SkolskiPolicajac)pol;
-						MessageBox.Show(skolski.ToString());
-					}
-					else
-					{
-						MessageBox.Show(pol.ToString());
-					}
-				}
-				s.Close();
+				//	else if (pol.GetType() == typeof(VanredniPolicajac))
+				//	{
+				//		VanredniPolicajac vanredni = (VanredniPolicajac)pol;
+				//		MessageBox.Show(vanredni.ToString());
+				//	}
+				//	else if (pol.GetType() == typeof(SkolskiPolicajac))
+				//	{
+				//		SkolskiPolicajac skolski = (SkolskiPolicajac)pol;
+				//		MessageBox.Show(skolski.ToString());
+				//	}
+				//	else
+				//	{
+				//		MessageBox.Show(pol.ToString());
+				//	}
+				//}
+				//s.Close();
 			}
 			catch (Exception exception)
 			{
@@ -772,6 +773,25 @@ namespace Uprava
 
 				SkolskiPolicajac skolski = (SkolskiPolicajac) policajci[0];
 				MessageBox.Show(skolski.ToString());
+			}
+			catch (Exception exception)
+			{
+				Console.WriteLine(exception);
+				throw;
+			}
+		}
+
+		private void button23_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
+				IList<SkolskiPolicajac> policajci = s.QueryOver<SkolskiPolicajac>().List<SkolskiPolicajac>();
+
+				foreach (var pol in policajci)
+				{
+					MessageBox.Show(pol.ToString());
+				}
 			}
 			catch (Exception exception)
 			{
