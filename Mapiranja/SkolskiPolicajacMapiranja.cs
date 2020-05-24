@@ -8,15 +8,17 @@ using Uprava.Entiteti;
 
 namespace Uprava.Mapiranja
 {
-    public class SkolskiPolicajacMapiranja : ClassMap<SkolskiPolicajac>
+    public class SkolskiPolicajacMapiranja : SubclassMap<SkolskiPolicajac>
     {
         public SkolskiPolicajacMapiranja()
         {
             Table("SKOLSKI_POLICAJAC");
-                Id(x => x.PolicajacId, "POLICAJACID").GeneratedBy.TriggerIdentity();
+
+            KeyColumn("POLICAJACID");
+            //DiscriminatorValue("SKOLSKI");
             Map(x => x.NazivSkole, "NAZIV_SKOLE");
-            Map(x => x.Adresa, "ADRESA");
-            Map(x => x.BrTelefonaSkole, "BR_TELEFONA_SKOLE");
+            //Map(x => x.AdresaSkole, "ADRESA");
+            Map(x => x.BrojTelefonaSkole, "BR_TELEFONA_SKOLE");
             Map(x => x.OsobaZaKontakt, "OSOBA_ZA_KONTAKT");
             Map(x => x.SrednjaIliOsnovna, "SREDNJA_ILI_OSNOVNA");
 

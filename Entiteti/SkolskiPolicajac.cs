@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace Uprava.Entiteti
 {
-    public class SkolskiPolicajac
+    public class SkolskiPolicajac:Policajac
     {
-        public virtual int PolicajacId { get; protected set; }
-        public virtual string SrednjaIliOsnovna { get; set; }
+		public virtual string SrednjaIliOsnovna { get; set; }
         public virtual string NazivSkole { get; set; }
-        public virtual string Adresa { get; set; }
+        public virtual string AdresaSkole { get; set; }
         public virtual string OsobaZaKontakt { get; set; }
-        public virtual string BrTelefonaSkole { get; set; }
+        public virtual string BrojTelefonaSkole { get;  set; }
 
-        public virtual Policajac PripadaPolicajcu { get; set; }
-
-        public virtual IList<Patrola> Patrole { get; set; }
-
-        public SkolskiPolicajac()
+        public override string ToString()
         {
-            Patrole = new List<Patrola>();
+	        StringBuilder displayStringBuilder = new StringBuilder();
+	        displayStringBuilder.AppendLine();
+	        displayStringBuilder.AppendFormat(
+		        "Srednja ili osnovna:{0},Naziv skole{1},Osoba za kontakt{2},Broj telefona skole:{3}", SrednjaIliOsnovna,
+		        NazivSkole, OsobaZaKontakt, BrojTelefonaSkole);
+	        return base.ToString() + displayStringBuilder.ToString();
         }
     }
 }

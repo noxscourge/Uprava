@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uprava.Entiteti
 {
-	public  class AlarmniSistem
+	public abstract class AlarmniSistem
 	{
         //serijskibr treba da bude int
 		public virtual string SerijskiBr { get; set; }
@@ -15,10 +15,7 @@ namespace Uprava.Entiteti
 		public virtual string GodinaProizvodnje { get; set; }
 		public virtual DateTime DatumInstalacije { get; set; }
 		public virtual string Tip { get; set; }
-		public virtual string HorizontalnaRezolucija { get; set; }
-		public virtual string VertikalnaRezolucija { get; set; }
-		public virtual string Osetljivost { get; set; }
-		public virtual string Frekvencija { get; set; }
+
 		public virtual Objekat PripadaObjektu {get;set;} 
 		public virtual DateTime DatumPoslednjegTesta { get; set; }
 		public virtual DateTime DatumPoslednjegServisiranja { get; set; }
@@ -29,5 +26,23 @@ namespace Uprava.Entiteti
 		{
 			Zaduzen = new List<Zaduzen>();
 		}
+	}
+
+	public class ToplotniAlarmniSistem:AlarmniSistem
+	{
+		public virtual string HorizontalnaRezolucija { get; set; }
+		public virtual string VertikalnaRezolucija { get; set; }
+	}
+
+	public class UltrazvucniAlarmniSistem:AlarmniSistem
+	{
+		public virtual string Frekvencija { get; set; }
+
+	}
+
+	public class DetekcijaPokretaAlarmniSistem:AlarmniSistem
+	{
+		public virtual string Osetljivost { get; set; }
+
 	}
 }
