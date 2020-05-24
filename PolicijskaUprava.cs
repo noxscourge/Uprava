@@ -109,9 +109,7 @@ namespace Uprava
 			try
 			{
 				ISession s = DataLayer.GetSession();
-				Policajac p = s.Load<Policajac>(1);
-
-				MessageBox.Show(p.Ime);
+				
 
 
 				s.Close();
@@ -726,7 +724,43 @@ namespace Uprava
 					MessageBox.Show(ec.Message);
 				}
 			}
+
+		private void button22_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
+				IList<AlarmniSistem> listaAlarmnihSistema = s.QueryOver<AlarmniSistem>().List<AlarmniSistem>();
+
+				foreach (AlarmniSistem alarm in listaAlarmnihSistema)
+				{
+					if (alarm.GetType() == typeof(ToplotniAlarmniSistem))
+					{
+						ToplotniAlarmniSistem toplotni = (ToplotniAlarmniSistem) alarm;
+						MessageBox.Show(toplotni.ToString());
+					}
+
+					else if (alarm.GetType() == typeof(UltrazvucniAlarmniSistem))
+					{
+						UltrazvucniAlarmniSistem ultrazvucni = (UltrazvucniAlarmniSistem) alarm;
+						MessageBox.Show(ultrazvucni.ToString());
+					}
+					else if (alarm.GetType() == typeof(DetekcijaPokretaAlarmniSistem))
+					{
+						DetekcijaPokretaAlarmniSistem detekcijaPokretaAlarmniSistem =
+							(DetekcijaPokretaAlarmniSistem) alarm;
+						MessageBox.Show(detekcijaPokretaAlarmniSistem.ToString());
+					}
+				}
+
+			}
+			catch (Exception exception)
+			{
+				Console.WriteLine(exception);
+				throw;
+			}
 		}
+	}
 	}
 	
 
