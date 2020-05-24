@@ -588,7 +588,7 @@ namespace Uprava
 
 
 				c.DatumSticanja = DateTime.Now;
-				c.Naziv = "TEST ZA IGORA";
+				c.Naziv = "TEST ZA IGORAAAAAAA";
 				c.pripadaPolicajcu= pol;
 
 				pol.Cinovi.Add(c);
