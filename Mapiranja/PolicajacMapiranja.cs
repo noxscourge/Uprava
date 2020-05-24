@@ -40,11 +40,12 @@ namespace Uprava.Mapiranja
 		}
 	}
 
+
 	class VanredniPolicajacMapiranja : SubclassMap<VanredniPolicajac>
 	{
 		public VanredniPolicajacMapiranja()
 		{
-			DiscriminatorValue("VANDREDNI");
+			DiscriminatorValue("VANREDNI");
 
 			HasMany(x => x.Kursevi).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
 			HasMany(x => x.Sertifikati).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
@@ -61,4 +62,5 @@ namespace Uprava.Mapiranja
 
 		}
 	}
+
 }

@@ -58,6 +58,7 @@
 			this.button18 = new System.Windows.Forms.Button();
 			this.button20 = new System.Windows.Forms.Button();
 			this.button22 = new System.Windows.Forms.Button();
+			this.button21 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -368,12 +369,23 @@
 			this.button22.UseVisualStyleBackColor = true;
 			this.button22.Click += new System.EventHandler(this.button22_Click);
 			// 
+			// button21
+			// 
+			this.button21.Location = new System.Drawing.Point(619, 352);
+			this.button21.Name = "button21";
+			this.button21.Size = new System.Drawing.Size(284, 61);
+			this.button21.TabIndex = 31;
+			this.button21.Text = "Provera skolskog policajca";
+			this.button21.UseVisualStyleBackColor = true;
+			this.button21.Click += new System.EventHandler(this.button21_Click);
+			// 
 			// PolicijskaUprava
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.ClientSize = new System.Drawing.Size(1504, 809);
+			this.Controls.Add(this.button21);
 			this.Controls.Add(this.button22);
 			this.Controls.Add(this.button20);
 			this.Controls.Add(this.button18);
@@ -442,6 +454,7 @@
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button22;
-    }
+		private System.Windows.Forms.Button button21;
+	}
 }
 

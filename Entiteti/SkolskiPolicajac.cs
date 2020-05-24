@@ -10,10 +10,11 @@ namespace Uprava.Entiteti
     {
 		public virtual string SrednjaIliOsnovna { get; set; }
         public virtual string NazivSkole { get; set; }
-        public virtual string AdresaSkole { get; set; }
+       // public virtual string AdresaSkole { get; set; }
         public virtual string OsobaZaKontakt { get; set; }
         public virtual string BrojTelefonaSkole { get;  set; }
 
+        #region ToStringFunc
         public override string ToString()
         {
 	        StringBuilder displayStringBuilder = new StringBuilder();
@@ -23,5 +24,7 @@ namespace Uprava.Entiteti
 		        NazivSkole, OsobaZaKontakt, BrojTelefonaSkole);
 	        return base.ToString() + displayStringBuilder.ToString();
         }
+        #endregion
+
     }
 }

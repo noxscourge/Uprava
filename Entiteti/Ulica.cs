@@ -10,7 +10,7 @@ namespace Uprava.Entiteti
     {
         //metode
         public virtual int UlicaId { get; protected set; }
-        public virtual Policajac PripadaPolicajcu { get; set; }
+        public virtual PozornikPolicajac PripadaPolicajcu { get; set; }
 
         public virtual string Naziv { get; set; }
     }

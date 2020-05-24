@@ -9,7 +9,7 @@ namespace Uprava.Entiteti
 	public class Kurs
 	{
 		public virtual int KursId { get; set; }
-		public virtual Policajac Policajac { get; set; }
+		public virtual VanredniPolicajac Policajac { get; set; }
 		public virtual string Naziv { get; set; }
 		public virtual DateTime DatumZavrsetka { get; set; }
 	}

@@ -51,18 +51,18 @@ namespace Uprava
 				{
 					if (pol.GetType() == typeof(PozornikPolicajac))
 					{
-						PozornikPolicajac pozornik = (PozornikPolicajac) pol;
+						PozornikPolicajac pozornik = (PozornikPolicajac)pol;
 						MessageBox.Show(pozornik.ToString());
 					}
 
 					else if (pol.GetType() == typeof(VanredniPolicajac))
 					{
-						VanredniPolicajac vanredni = (VanredniPolicajac) pol;
+						VanredniPolicajac vanredni = (VanredniPolicajac)pol;
 						MessageBox.Show(vanredni.ToString());
 					}
 					else if (pol.GetType() == typeof(SkolskiPolicajac))
 					{
-						SkolskiPolicajac skolski = (SkolskiPolicajac) pol;
+						SkolskiPolicajac skolski = (SkolskiPolicajac)pol;
 						MessageBox.Show(skolski.ToString());
 					}
 					else
@@ -753,6 +753,25 @@ namespace Uprava
 					}
 				}
 
+				s.Close();
+
+			}
+			catch (Exception exception)
+			{
+				Console.WriteLine(exception);
+				throw;
+			}
+		}
+
+		private void button21_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
+				IList<Policajac> policajci = s.QueryOver<Policajac>().Where(p => p.PolicajacId == 5).List<Policajac>();
+
+				SkolskiPolicajac skolski = (SkolskiPolicajac) policajci[0];
+				MessageBox.Show(skolski.ToString());
 			}
 			catch (Exception exception)
 			{
