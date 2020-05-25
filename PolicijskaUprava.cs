@@ -1085,7 +1085,7 @@ namespace Uprava
 				if (o != null)
 				{
 					MessageBox.Show(o.Naziv);
-					MessageBox.Show(o.pripadaPolicajcu.Ime);
+					MessageBox.Show(o.PripadaPolicajcu.Ime);
 				}
 				else
 				{
@@ -1198,7 +1198,7 @@ namespace Uprava
 
 				foreach (Cin o in cinovi)
 				{
-					MessageBox.Show("Id=" + o.pripadaPolicajcu.PolicajacId + "Naziv=" + o.Naziv);
+					MessageBox.Show("Id=" + o.PripadaPolicajcu.PolicajacId + "Naziv=" + o.Naziv);
 				}
 
 				s.Close();

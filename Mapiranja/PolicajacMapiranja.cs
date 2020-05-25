@@ -68,7 +68,7 @@ namespace Uprava.Mapiranja
 	{
 		public ObicanPolicajacMapiranja()
 		{
-			DiscriminatorValue("O");
+			DiscriminatorValue("OBICAN");
 		}
 	}
 
