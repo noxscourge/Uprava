@@ -21,7 +21,7 @@ namespace Uprava.Mapiranja
 			References(x => x.Partner).Column("PARTNERID").LazyLoad();
 			References(x => x.Vozilo).Column("VOZILOID").LazyLoad();
 
-            HasMany(x => x.imalaIntervencije).KeyColumn("INTERVENCIJAID").Cascade.All().Inverse();
+            HasMany(x => x.ImalaIntervencije).KeyColumn("INTERVENCIJAID").Cascade.All().Inverse();
             
         }
 	}

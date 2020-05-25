@@ -16,8 +16,8 @@ namespace Uprava.Mapiranja
 			Table("POLICAJAC");
 
 			Id(x => x.PolicajacId, "POLICAJACID").GeneratedBy.TriggerIdentity();
-
-			//DiscriminateSubClassesOnColumn("TIP");
+			
+			DiscriminateSubClassesOnColumn("TIP_POSLA");
 
 			Map(x => x.Ime, "IME");
 			Map(x => x.ImeRoditelja, "IME_RODITELJA");
@@ -46,6 +46,7 @@ namespace Uprava.Mapiranja
 		public VanredniPolicajacMapiranja()
 		{
 			DiscriminatorValue("VANREDNI");
+			
 
 			HasMany(x => x.Kursevi).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
 			HasMany(x => x.Sertifikati).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
@@ -60,6 +61,14 @@ namespace Uprava.Mapiranja
 			DiscriminatorValue("POZORNIK");
 			HasMany(x=>x.Ulice).KeyColumn("POLICAJACID").LazyLoad().Cascade.All().Inverse();
 
+		}
+	}
+
+	class ObicanPolicajacMapiranja : SubclassMap<ObicanPolicajac>
+	{
+		public ObicanPolicajacMapiranja()
+		{
+			DiscriminatorValue("O");
 		}
 	}
 

@@ -21,8 +21,8 @@ namespace Uprava.Entiteti
 		public virtual string Skola { get; set; }
 		public virtual string NazivObrazovanja { get; set; }
 		public virtual DateTime DatumPrijema { get; set; }
-		public virtual String Pozicija { get; set; }
-		public virtual String TipPosla { get; set; }
+		public virtual string? Pozicija { get; set; }
+		public virtual string? TipPosla { get; set; }
 		public virtual PolicijskaStanica PripadaPolicijskaStanica { get; set; }
 		public virtual Patrola VodjaPatrole { get; set; }
 		public virtual Patrola PartnerUPatroli { get; set; }
@@ -187,6 +187,11 @@ namespace Uprava.Entiteti
 			}
 
 			#endregion
+	}
+
+	public class ObicanPolicajac : Policajac
+	{
+		
 	}
 }
 

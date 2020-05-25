@@ -89,7 +89,7 @@ namespace Uprava
 
 				Uprava.Entiteti.PolicijskaStanica p = s.Load<Uprava.Entiteti.PolicijskaStanica>(1);
 
-				foreach (PozornikPolicajac pol in p.Policajci)
+				foreach (Policajac pol in p.Policajci)
 				{
 					MessageBox.Show(pol.Ime + " " + pol.Kurs);
 				}
@@ -174,7 +174,7 @@ namespace Uprava
 
 				MessageBox.Show(c.Naziv);
 				MessageBox.Show((c.DatumSticanja).ToString());
-				MessageBox.Show(c.pripadaPolicajcu.Ime);
+				MessageBox.Show(c.PripadaPolicajcu.Ime);
 
 				s.Close();
 			}
@@ -459,7 +459,7 @@ namespace Uprava
             try
             {
                 ISession s = DataLayer.GetSession();
-                Uprava.Entiteti.PozornikPolicajac p = s.Load<Uprava.Entiteti.PozornikPolicajac>(1);
+                Uprava.Entiteti.Policajac p = s.Load<Uprava.Entiteti.Policajac>(1);
 
                 foreach (Cin c in p.Cinovi)
                 {
@@ -527,7 +527,7 @@ namespace Uprava
             try
             {
                 ISession s = DataLayer.GetSession();
-                Uprava.Entiteti.PozornikPolicajac p = s.Load<Uprava.Entiteti.PozornikPolicajac>(9);
+                Uprava.Entiteti.Policajac p = s.Load<Uprava.Entiteti.Policajac>(9);
 
 
                 MessageBox.Show(p.Ime + " " + p.Jmbg);
@@ -597,14 +597,14 @@ namespace Uprava
 
 
 
-				PozornikPolicajac pol = s.Load<PozornikPolicajac>(11);
+				Policajac pol = s.Load<Policajac>(11);
 
 				Cin c = new Cin();
 
 
 				c.DatumSticanja = DateTime.Now;
 				c.Naziv = "TEST ZA IGORAAAAAAA";
-				c.pripadaPolicajcu= pol;
+				c.PripadaPolicajcu= pol;
 
 				pol.Cinovi.Add(c);
 
@@ -641,7 +641,7 @@ namespace Uprava
 				i.Vreme = "20:35H";
 				i.Opis = "Lagana prica";
 				o.ImaoIntervencije.Add(i);
-				p.imalaIntervencije.Add(i);
+				p.ImalaIntervencije.Add(i);
 
 				s.Save(i);
 				s.Flush();
@@ -663,7 +663,7 @@ namespace Uprava
 			{
 				ISession s = DataLayer.GetSession();
 
-				PozornikPolicajac p = new PozornikPolicajac();
+				Policajac p = new Policajac();
 				PolicijskaStanica ps = s.Load<PolicijskaStanica>(1);
 
 				p.Adresa = "Neznanog junaka";
@@ -769,7 +769,7 @@ namespace Uprava
 			try
 			{
 				ISession s = DataLayer.GetSession();
-				IList<PozornikPolicajac> policajci = s.QueryOver<PozornikPolicajac>().Where(p => p.PolicajacId == 5).List<PozornikPolicajac>();
+				IList<Policajac> policajci = s.QueryOver<Policajac>().Where(p => p.PolicajacId == 5).List<Policajac>();
 
 				SkolskiPolicajac skolski = (SkolskiPolicajac) policajci[0];
 				MessageBox.Show(skolski.ToString());
@@ -807,7 +807,7 @@ namespace Uprava
 				{
 					ISession s = DataLayer.GetSession();
 
-					PozornikPolicajac pol = s.Get<PozornikPolicajac>(11);
+					Policajac pol = s.Get<Policajac>(11);
 
 					//obrada podataka o odeljenju
 
