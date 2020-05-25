@@ -22,7 +22,7 @@ namespace Uprava.Entiteti
 		public virtual string NazivObrazovanja { get; set; }
 		public virtual DateTime DatumPrijema { get; set; }
 		public virtual string? Pozicija { get; set; }
-		public virtual string? TipPosla { get; set; }
+		public virtual string TipPosla { get; set; }
 		public virtual PolicijskaStanica PripadaPolicijskaStanica { get; set; }
 		public virtual Patrola VodjaPatrole { get; set; }
 		public virtual Patrola PartnerUPatroli { get; set; }
