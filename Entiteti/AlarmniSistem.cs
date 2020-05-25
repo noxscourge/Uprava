@@ -64,6 +64,14 @@ namespace Uprava.Entiteti
 		public virtual string HorizontalnaRezolucija { get; set; }
 		public virtual string VertikalnaRezolucija { get; set; }
 
+		public override string Tip
+		{
+			get
+			{
+				return "Tolpotni";
+			}
+		}
+
 		#region toStringFunc
 		public override string ToString()
 		{
@@ -81,6 +89,13 @@ namespace Uprava.Entiteti
 	{
 		public virtual string Frekvencija { get; set; }
 
+		public override string Tip
+		{
+			get
+			{
+				return "Ultrazvucni";
+			}
+		}
 		#region toStringFunc
 		public override string ToString()
 		{
@@ -97,6 +112,13 @@ namespace Uprava.Entiteti
 	{
 		public virtual string Osetljivost { get; set; }
 
+		public override string Tip
+		{
+			get
+			{
+				return "Detekcija_Pokreta";
+			}
+		}
 		#region toStringFunc
 		public override string ToString()
 		{

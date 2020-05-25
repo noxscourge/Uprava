@@ -461,11 +461,11 @@ namespace Uprava
             try
             {
                 ISession s = DataLayer.GetSession();
-                Uprava.Entiteti.Policajac p = s.Load<Uprava.Entiteti.Policajac>(1);
+                Uprava.Entiteti.Policajac p = s.Load<Uprava.Entiteti.Policajac>(7);
 
                 foreach (Cin c in p.Cinovi)
                 {
-                    MessageBox.Show((c.Naziv).ToString());
+                    MessageBox.Show(c.Naziv);
                    
                 }
 
@@ -551,12 +551,27 @@ namespace Uprava
             try
             {
                 ISession s = DataLayer.GetSession();
-                Uprava.Entiteti.AlarmniSistem a = s.Load<Uprava.Entiteti.AlarmniSistem>(1);
+                Uprava.Entiteti.AlarmniSistem a = s.QueryOver<AlarmniSistem>()
+	                .Where(a=>a.SerijskiBr=="K1271").SingleOrDefault();
+                if (a.GetType() == typeof(ToplotniAlarmniSistem))
+                {
+	                ToplotniAlarmniSistem t = (ToplotniAlarmniSistem) a;
+	                MessageBox.Show(t.Tip);
+	                MessageBox.Show(t.PripadaObjektu.TipObjekta);
+                }
+                else if(a.GetType() == typeof(UltrazvucniAlarmniSistem))
+                {
+					UltrazvucniAlarmniSistem t = (UltrazvucniAlarmniSistem)a;
+					MessageBox.Show(t.Tip);
+					MessageBox.Show(t.PripadaObjektu.TipObjekta);
+				}
 
-
-                MessageBox.Show(a.Tip);
-                MessageBox.Show(a.PripadaObjektu.TipObjekta);
-
+				else if (a.GetType() == typeof(DetekcijaPokretaAlarmniSistem))
+                {
+	                DetekcijaPokretaAlarmniSistem t = (DetekcijaPokretaAlarmniSistem)a;
+	                MessageBox.Show(t.Tip);
+	                MessageBox.Show(t.PripadaObjektu.TipObjekta);
+				}
 
                 s.Close();
             }
@@ -665,7 +680,7 @@ namespace Uprava
 			{
 				ISession s = DataLayer.GetSession();
 
-				Policajac p = new Policajac();
+				ObicanPolicajac p = new ObicanPolicajac();
 				PolicijskaStanica ps = s.Load<PolicijskaStanica>(1);
 
 				p.Adresa = "Neznanog junaka";
@@ -704,10 +719,12 @@ namespace Uprava
 		{
 			try
 			{
-				/*ISession s = DataLayer.GetSession();
+				ISession s = DataLayer.GetSession();
 
 				Vestina v = new Vestina();
-				Policajac pol = s.Load<Policajac>(24);
+				IList<VanredniPolicajac> listaVanrednihPolicajaca = s.QueryOver<VanredniPolicajac>().List();
+
+				VanredniPolicajac pol = listaVanrednihPolicajaca[0];
 
 				v.Naziv = "Borilacke vestine";
 				v.PripadaPolicajcu = pol;
@@ -718,7 +735,7 @@ namespace Uprava
 				s.Save(v);
 				s.Flush();
 
-				s.Close();*/
+				s.Close();
 
 			}
 			
@@ -905,9 +922,7 @@ namespace Uprava
 				foreach (AlarmniSistem z in sistemi)
 				{
 				
-					MessageBox.Show(z.GodinaProizvodnje);
-					MessageBox.Show(z.SerijskiBr);
-					MessageBox.Show(z.Tip);
+					MessageBox.Show(z.GodinaProizvodnje+" "+z.SerijskiBr+" "+z.Tip);
 				}
 
 				s.Close();
@@ -1614,7 +1629,7 @@ namespace Uprava
 			{
 				ISession s = DataLayer.GetSession();
 
-				Policajac o = s.Load<Policajac>(41);
+				Policajac o = s.Load<Policajac>(19);
 
 				//brise se objekat iz baze ali ne i instanca objekta u memroiji
 				s.Delete(o);
@@ -1658,7 +1673,7 @@ namespace Uprava
 			{
 				ISession s = DataLayer.GetSession();
 
-				Cin o = s.Load<Cin>(28);
+				Cin o = s.Load<Cin>(3);
 
 				//brise se objekat iz baze ali ne i instanca objekta u memroiji
 				s.Delete(o);
@@ -1731,7 +1746,7 @@ namespace Uprava
 				ISession s = DataLayer.GetSession();
 
 				IEnumerable<Vestina> vestine = from p in s.Query<Vestina>()
-												   where (p.PripadaPolicajcu.PolicajacId == 24)
+												   where (p.PripadaPolicajcu.PolicajacId == 13)
 												   orderby p.PripadaPolicajcu.PolicajacId
 												   select p;
 
