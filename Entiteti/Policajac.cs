@@ -178,7 +178,7 @@ namespace Uprava.Entiteti
 					displayStringBuilder.AppendLine();
 					foreach (var ulica in Ulice)
 					{
-						displayStringBuilder.AppendFormat("Naziv ulice:{0}" + ulica.Naziv);
+						displayStringBuilder.AppendFormat("Naziv ulice:{0}",ulica.Naziv);
 						displayStringBuilder.AppendLine();
 					}
 				}

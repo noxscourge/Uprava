@@ -53,6 +53,7 @@ namespace Uprava
 					if (pol.GetType() == typeof(PozornikPolicajac))
 					{
 						PozornikPolicajac pozornik = (PozornikPolicajac)pol;
+						
 						MessageBox.Show(pozornik.ToString());
 					}
 
@@ -110,8 +111,9 @@ namespace Uprava
 			try
 			{
 				ISession s = DataLayer.GetSession();
-				
 
+				PolicijskaStanica p = s.Load<PolicijskaStanica>(1);
+				MessageBox.Show(p.StanicaId+" "+p.Naziv+" "+p.Adresa);
 
 				s.Close();
 			}
