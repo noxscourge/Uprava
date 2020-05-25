@@ -21,8 +21,8 @@ namespace Uprava.Entiteti
 		public virtual string Skola { get; set; }
 		public virtual string NazivObrazovanja { get; set; }
 		public virtual DateTime DatumPrijema { get; set; }
-		public virtual String Pozicija { get; set; }
-		public virtual String TipPosla { get; set; }
+		public virtual string? Pozicija { get; set; }
+		public virtual string TipPosla { get; set; }
 		public virtual PolicijskaStanica PripadaPolicijskaStanica { get; set; }
 		public virtual Patrola VodjaPatrole { get; set; }
 		public virtual Patrola PartnerUPatroli { get; set; }
@@ -97,96 +97,102 @@ namespace Uprava.Entiteti
 	}
 
 
-//public class VanredniPolicajac : Policajac
-//{
-//	public virtual IList<Vestina> Vestine { get; set; }
-//	public virtual IList<Sertifikat> Sertifikati { get; set; }
-//	public virtual IList<Kurs> Kursevi { get; set; }
+	public class VanredniPolicajac : Policajac
+	{
+		public virtual IList<Vestina> Vestine { get; set; }
+		public virtual IList<Sertifikat> Sertifikati { get; set; }
+		public virtual IList<Kurs> Kursevi { get; set; }
 
-//	public VanredniPolicajac()
-//	{
-//		Vestine = new List<Vestina>();
-//		Sertifikati = new List<Sertifikat>();
-//		Kursevi = new List<Kurs>();
-//	}
+		public VanredniPolicajac()
+		{
+			Vestine = new List<Vestina>();
+			Sertifikati = new List<Sertifikat>();
+			Kursevi = new List<Kurs>();
+		}
 
-//	#region toStringFunc
+		#region toStringFunc
 
-//	public override string ToString()
-//	{
-//		StringBuilder displayStringBuilder = new StringBuilder();
-//		displayStringBuilder.AppendLine();
-//		if (Vestine.Count != 0)
-//		{
-//			displayStringBuilder.AppendFormat("Vestine:");
-//			displayStringBuilder.AppendLine();
-//			foreach (var vestina in Vestine)
-//			{
-//				displayStringBuilder.AppendFormat("Naziv:{0}", vestina.Naziv);
-//				displayStringBuilder.AppendLine();
-//			}
-//		}
+		public override string ToString()
+		{
+			StringBuilder displayStringBuilder = new StringBuilder();
+			displayStringBuilder.AppendLine();
+			if (Vestine.Count != 0)
+			{
+				displayStringBuilder.AppendFormat("Vestine:");
+				displayStringBuilder.AppendLine();
+				foreach (var vestina in Vestine)
+				{
+					displayStringBuilder.AppendFormat("Naziv:{0}", vestina.Naziv);
+					displayStringBuilder.AppendLine();
+				}
+			}
 
-//		if (Sertifikati.Count != 0)
-//		{
-//			displayStringBuilder.AppendFormat("Sertifikati:");
-//			displayStringBuilder.AppendLine();
-//			foreach (var sertifikat in Sertifikati)
-//			{
-//				displayStringBuilder.AppendFormat("Naziv:{0},Datum sticanja:{1}", sertifikat.Naziv,
-//					sertifikat.DatumSticanja);
-//				displayStringBuilder.AppendLine();
-//			}
-//		}
+			if (Sertifikati.Count != 0)
+			{
+				displayStringBuilder.AppendFormat("Sertifikati:");
+				displayStringBuilder.AppendLine();
+				foreach (var sertifikat in Sertifikati)
+				{
+					displayStringBuilder.AppendFormat("Naziv:{0},Datum sticanja:{1}", sertifikat.Naziv,
+						sertifikat.DatumSticanja);
+					displayStringBuilder.AppendLine();
+				}
+			}
 
-//		if (Kursevi.Count != 0)
-//		{
-//			displayStringBuilder.AppendFormat("Kursevi:");
-//			displayStringBuilder.AppendLine();
-//			foreach (var kurs in Kursevi)
-//			{
-//				displayStringBuilder.AppendFormat("Naziv:{0},Datum zavrsetka:{1}", kurs.Naziv, kurs.DatumZavrsetka);
-//				displayStringBuilder.AppendLine();
-//			}
-//		}
+			if (Kursevi.Count != 0)
+			{
+				displayStringBuilder.AppendFormat("Kursevi:");
+				displayStringBuilder.AppendLine();
+				foreach (var kurs in Kursevi)
+				{
+					displayStringBuilder.AppendFormat("Naziv:{0},Datum zavrsetka:{1}", kurs.Naziv, kurs.DatumZavrsetka);
+					displayStringBuilder.AppendLine();
+				}
+			}
 
-//		return base.ToString() + displayStringBuilder.ToString();
-//	}
+			return base.ToString() + displayStringBuilder.ToString();
+		}
 
-//	#endregion
+		#endregion
+	}
 
 
+	public class PozornikPolicajac : Policajac
+		{
+			public virtual IList<Ulica> Ulice { get; set; }
 
-//public class PozornikPolicajac : Policajac
-//{
-//	public virtual IList<Ulica> Ulice { get; set; }
+			public PozornikPolicajac()
+			{
+				Ulice = new List<Ulica>();
+			}
 
-//	public PozornikPolicajac()
-//	{
-//		Ulice = new List<Ulica>();
-//	}
+			#region toStringFunc
 
-//	#region toStringFunc
+			public override string ToString()
+			{
+				StringBuilder displayStringBuilder = new StringBuilder();
+				displayStringBuilder.AppendLine();
+				if (Ulice.Count != 0)
+				{
+					displayStringBuilder.AppendFormat("Ulice:");
+					displayStringBuilder.AppendLine();
+					foreach (var ulica in Ulice)
+					{
+						displayStringBuilder.AppendFormat("Naziv ulice:{0}" + ulica.Naziv);
+						displayStringBuilder.AppendLine();
+					}
+				}
 
-//	public override string ToString()
-//	{
-//		StringBuilder displayStringBuilder = new StringBuilder();
-//		displayStringBuilder.AppendLine();
-//		if (Ulice.Count != 0)
-//		{
-//			displayStringBuilder.AppendFormat("Ulice:");
-//			displayStringBuilder.AppendLine();
-//			foreach (var ulica in Ulice)
-//			{
-//				displayStringBuilder.AppendFormat("Naziv ulice:{0}" + ulica.Naziv);
-//				displayStringBuilder.AppendLine();
-//			}
-//		}
+				return base.ToString() + displayStringBuilder.ToString();
+			}
 
-//		return base.ToString() + displayStringBuilder.ToString();
-//	}
-//}
+			#endregion
+	}
 
-//	#endregion
-//}
+	public class ObicanPolicajac : Policajac
+	{
+		
+	}
 }
+
+

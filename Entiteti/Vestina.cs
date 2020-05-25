@@ -9,7 +9,7 @@ namespace Uprava.Entiteti
     public class Vestina
     {
         public virtual int VestinaId { get; protected set; }
-        public virtual Policajac PripadaPolicajcu { get; set; } //vanredni
+        public virtual VanredniPolicajac PripadaPolicajcu { get; set; } //vanredni
 
         public virtual string Naziv { get; set; }
     }

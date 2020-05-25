@@ -45,33 +45,33 @@ namespace Uprava
 		{
 			try
 			{
-				//ISession s = DataLayer.GetSession();
-				//IList<Policajac> listaPolicajca = s.QueryOver<Policajac>().List<Policajac>();
+				ISession s = DataLayer.GetSession();
+				IList<Policajac> listaPolicajca = s.QueryOver<Policajac>().List<Policajac>();
 
-				//foreach (Policajac pol in listaPolicajca)
-				//{
-				//	if (pol.GetType() == typeof(PozornikPolicajac))
-				//	{
-				//		PozornikPolicajac pozornik = (PozornikPolicajac)pol;
-				//		MessageBox.Show(pozornik.ToString());
-				//	}
+				foreach (Policajac pol in listaPolicajca)
+				{
+					if (pol.GetType() == typeof(PozornikPolicajac))
+					{
+						PozornikPolicajac pozornik = (PozornikPolicajac)pol;
+						MessageBox.Show(pozornik.ToString());
+					}
 
-				//	else if (pol.GetType() == typeof(VanredniPolicajac))
-				//	{
-				//		VanredniPolicajac vanredni = (VanredniPolicajac)pol;
-				//		MessageBox.Show(vanredni.ToString());
-				//	}
-				//	else if (pol.GetType() == typeof(SkolskiPolicajac))
-				//	{
-				//		SkolskiPolicajac skolski = (SkolskiPolicajac)pol;
-				//		MessageBox.Show(skolski.ToString());
-				//	}
-				//	else
-				//	{
-				//		MessageBox.Show(pol.ToString());
-				//	}
-				//}
-				//s.Close();
+					else if (pol.GetType() == typeof(VanredniPolicajac))
+					{
+						VanredniPolicajac vanredni = (VanredniPolicajac)pol;
+						MessageBox.Show(vanredni.ToString());
+					}
+					else if (pol.GetType() == typeof(SkolskiPolicajac))
+					{
+						SkolskiPolicajac skolski = (SkolskiPolicajac)pol;
+						MessageBox.Show(skolski.ToString());
+					}
+					else
+					{
+						MessageBox.Show(pol.ToString());
+					}
+				}
+				s.Close();
 			}
 			catch (Exception exception)
 			{
@@ -174,7 +174,7 @@ namespace Uprava
 
 				MessageBox.Show(c.Naziv);
 				MessageBox.Show((c.DatumSticanja).ToString());
-				MessageBox.Show(c.pripadaPolicajcu.Ime);
+				MessageBox.Show(c.PripadaPolicajcu.Ime);
 
 				s.Close();
 			}
@@ -604,7 +604,7 @@ namespace Uprava
 
 				c.DatumSticanja = DateTime.Now;
 				c.Naziv = "TEST ZA IGORAAAAAAA";
-				c.pripadaPolicajcu= pol;
+				c.PripadaPolicajcu= pol;
 
 				pol.Cinovi.Add(c);
 
@@ -641,7 +641,7 @@ namespace Uprava
 				i.Vreme = "20:35H";
 				i.Opis = "Lagana prica";
 				o.ImaoIntervencije.Add(i);
-				p.imalaIntervencije.Add(i);
+				p.ImalaIntervencije.Add(i);
 
 				s.Save(i);
 				s.Flush();

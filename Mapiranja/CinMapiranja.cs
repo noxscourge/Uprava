@@ -19,7 +19,7 @@ namespace Uprava.Mapiranja
 			Map(x => x.Naziv, "NAZIV");
 			Map(x => x.DatumSticanja, "DATUM_STICANJA");
 
-			References(x => x.pripadaPolicajcu).Column("POLICAJACID").LazyLoad();
+			References(x => x.PripadaPolicajcu).Column("POLICAJACID").LazyLoad();
 		}
 	}
 }
