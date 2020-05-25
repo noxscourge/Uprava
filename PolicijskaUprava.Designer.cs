@@ -456,7 +456,7 @@
             this.button30.Name = "button30";
             this.button30.Size = new System.Drawing.Size(168, 58);
             this.button30.TabIndex = 39;
-            this.button30.Text = "Pronadji mi sve alarmne sisteme gde je tip toplotni";
+            this.button30.Text = "Pronadji mi sve TAS gde je proizvodjac PARADOX";
             this.button30.UseVisualStyleBackColor = true;
             this.button30.Click += new System.EventHandler(this.button30_Click);
             // 
@@ -465,7 +465,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1003, 526);
+            this.ClientSize = new System.Drawing.Size(1003, 501);
             this.Controls.Add(this.button30);
             this.Controls.Add(this.button29);
             this.Controls.Add(this.button28);
