@@ -25,6 +25,7 @@ namespace Uprava.Mapiranja
 			Map(x => x.DatumPoslednjegTesta, "DATUM_POSLEDNJEG_TESTA");
 			Map(x => x.DatumPoslednjegServisiranja, "DATUM_POSLEDNJEG_SERVISIRANJA");
 			Map(x => x.OtklonjenKvar, "OTKLONJEN_KVAR");
+			
 
 			References(x => x.PripadaObjektu).Column("OBJEKATID").LazyLoad();
 

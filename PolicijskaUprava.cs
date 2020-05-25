@@ -799,8 +799,179 @@ namespace Uprava
 				throw;
 			}
 		}
+
+		private void button23_Click_1(object sender, EventArgs e)
+		{
+			
+				try
+				{
+					ISession s = DataLayer.GetSession();
+
+					Policajac pol = s.Get<Policajac>(11);
+
+					//obrada podataka o odeljenju
+
+					s.Refresh(pol);
+
+					s.Close();
+
+				}
+				catch (Exception ec)
+				{
+					MessageBox.Show(ec.Message);
+				}
+			}
+
+		private void button24_Click(object sender, EventArgs e)
+		{
+
+			try
+			{
+				ISession s = DataLayer.GetSession();
+
+				Vestina v = s.Get<Vestina>(2);
+
+				//obrada podataka o odeljenju
+
+				s.Refresh(v);
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
+		}
+
+		private void button25_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
+
+				AlarmniSistem a = s.Get<AlarmniSistem>("K1271");
+
+				//obrada podataka o odeljenju
+
+				s.Refresh(a);
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
+		}
+
+		private void button27_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
+
+				IQuery q = s.CreateQuery("from Cin");
+
+				IList<Cin> cinovi = q.List<Cin>();
+
+				foreach (Cin o in cinovi)
+				{
+					MessageBox.Show(o.Naziv);
+					//MessageBox.Show(o.pripadaPolicajcu.Ime);
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
+		}
+
+		private void button28_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
+
+				IQuery q = s.CreateQuery("from AlarmniSistem");
+
+				IList<AlarmniSistem> sistemi = q.List<AlarmniSistem>();
+
+				foreach (AlarmniSistem z in sistemi)
+				{
+				
+					MessageBox.Show(z.GodinaProizvodnje);
+					MessageBox.Show(z.SerijskiBr);
+					MessageBox.Show(z.Tip);
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
+		}
+
+		private void button29_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
+
+				IQuery q = s.CreateQuery("from Intervencija");
+
+				IList<Intervencija> intervencije = q.List<Intervencija>();
+
+				foreach (Intervencija z in intervencije)
+				{
+
+					MessageBox.Show(z.Vreme);
+					MessageBox.Show(z.Opis);
+					MessageBox.Show((z.IntervencijaId).ToString());
+					MessageBox.Show((z.Objekat.ObjekatId).ToString());
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
+		}
+
+		private void button30_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
+
+				//Odeljenja koja nemaju info pult
+				IQuery q = s.CreateQuery("from ToplotniAlarmniSistem as o where o.Proizvodjac='PARADOX'");
+
+				IList<ToplotniAlarmniSistem> sistemi = q.List<ToplotniAlarmniSistem>();
+
+				foreach (ToplotniAlarmniSistem o in sistemi)
+				{
+					MessageBox.Show(o.SerijskiBr + " " + (o.DatumInstalacije.ToString()));
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
+		}
 	}
 	}
+	
 	
 
 
