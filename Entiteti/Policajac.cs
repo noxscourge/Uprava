@@ -12,7 +12,7 @@ namespace Uprava.Entiteti
 		public virtual string Ime { get; set; }
 		public virtual string ImeRoditelja { get; set; }
 		public virtual string Prezime { get; set; }
-		public virtual string Pol { get; set; }
+		public virtual char Pol { get; set; }
 		public virtual string Jmbg { get; set; }
 		public virtual string Adresa { get; set; }
 		public virtual DateTime DatumRodjenja { get; set; }

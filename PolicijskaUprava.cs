@@ -675,7 +675,7 @@ namespace Uprava
 				p.Jmbg = "1452145214521";
 				p.Kurs = "No info";
 				p.NazivObrazovanja = "Obuceni policajac";
-				p.Pol = "M";
+				p.Pol = 'M';
 				p.Pozicija = "Snajperista";
 				p.Skola = "Policijska akademija";
 				p.TipPosla = "Skolski Policajac";
@@ -972,147 +972,779 @@ namespace Uprava
 
 		private void button31_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				//Odeljenja koja nemaju info pult
+				IQuery q = s.CreateQuery("from Cin as o where o.Naziv='INSPEKTOR'");
+
+				IList<Cin> cinovi = q.List<Cin>();
+
+				foreach (Cin o in cinovi)
+				{
+					MessageBox.Show(o.Naziv + " " + "Cin  id: " + (o.CinId.ToString()));
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button32_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				//Odeljenja koja nemaju info pult
+				IQuery q = s.CreateQuery("from Policajac as o where o.Ime='VLADIMIR'");
+
+				IList<Policajac> policajci = q.List<Policajac>();
+
+				foreach (Policajac o in policajci)
+				{
+					MessageBox.Show(o.Ime + " " + "," + "Policajac id: " + (o.PolicajacId.ToString()) + " , " + "Ime roditelja:" + o.ImeRoditelja);
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button33_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				//Odeljenja koja nemaju info pult
+				IQuery q = s.CreateQuery("from PolicijskaStanica as o where o.Naziv='POLICIJSKA STANICA NIS'");
+
+				IList<PolicijskaStanica> stanice = q.List<PolicijskaStanica>();
+
+				foreach (PolicijskaStanica o in stanice)
+				{
+					MessageBox.Show(o.Naziv + " " + "," + "Stanica id: " + (o.StanicaId.ToString()) + " Opstina" + ":" + o.Opstina);
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button34_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				Policajac o = s.Get<Policajac>(100);
+
+				if (o != null)
+				{
+					MessageBox.Show(o.Prezime);
+					MessageBox.Show(o.Ime);
+					MessageBox.Show(o.ImeRoditelja);
+				}
+				else
+				{
+					MessageBox.Show("Ne postoji policajac sa zadatim identifikatorom");
+				}
+
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button35_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				Cin o = s.Get<Cin>(2);
+
+				if (o != null)
+				{
+					MessageBox.Show(o.Naziv);
+					MessageBox.Show(o.pripadaPolicajcu.Ime);
+				}
+				else
+				{
+					MessageBox.Show("Ne postoji cin sa zadatim identifikatorom");
+				}
+
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button36_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				AlarmniSistem o = s.Get<AlarmniSistem>("K333");
+
+				if (o != null)
+				{
+					MessageBox.Show(o.Model);
+				}
+				else
+				{
+					MessageBox.Show("Ne postoji alarmni sistem sa zadatim serijskim brojem");
+				}
+
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button37_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				//Paramterizovani upit
+				IQuery q = s.CreateQuery("from Policajac as o where o.Ime = ? and o.Pol >= ?");
+				q.SetParameter(0, "IGOR");
+				q.SetParameter(1, 'M');
+
+				IList<Policajac> policajci = q.List<Policajac>();
+
+				foreach (Policajac o in policajci)
+				{
+					MessageBox.Show("Id="+ o.PolicajacId + "," + "Pol=" + o.Pol + "Ime:" + o.Ime);
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button38_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				//Paramterizovani upit
+				IQuery q = s.CreateQuery("from AlarmniSistem as o where o.Model = ? and o.GodinaProizvodnje >= ?");
+				q.SetParameter(0, "1510");
+				q.SetParameter(1, "2018");
+
+				IList<AlarmniSistem> sistemi = q.List<AlarmniSistem>();
+
+				foreach (AlarmniSistem o in sistemi)
+				{
+					MessageBox.Show("Id=" + o.SerijskiBr);
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button39_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				//Paramterizovani upit
+				IQuery q = s.CreateQuery("from Cin as o where o.Naziv = ?");
+				q.SetParameter(0, "INSPEKTOR");
+				
+
+				IList<Cin> cinovi = q.List<Cin>();
+
+				foreach (Cin o in cinovi)
+				{
+					MessageBox.Show("Id=" + o.pripadaPolicajcu.PolicajacId + "Naziv=" + o.Naziv);
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button42_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				//Paramterizovani upit
+				IQuery q = s.CreateQuery("select o.Naziv from Vestina as o "
+										+ "where o.VestinaId = :vestinaa "
+										+ "and o.PripadaPolicajcu.PolicajacId = :policajacc");
+
+				q.SetInt32("vestinaa", 21);
+				q.SetInt32("policajacc", 24);
+				
+
+				IList<String> vestine = q.List<String>();
+
+				foreach (String  o in vestine)
+				{
+					MessageBox.Show("Naziv:" + o);
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button41_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				//Paramterizovani upit
+				IQuery q = s.CreateQuery("select o.Ime from Policajac as o "
+										+ "where o.PolicajacId = :id "
+										+ "and o.Prezime = :prezime");
+
+				q.SetInt32("id", 24);
+				q.SetString("prezime", "Stamenkovic");
+
+
+				IList<String> policajac = q.List<String>();
+
+				foreach (String o in policajac)
+				{
+					MessageBox.Show("Ime:" + o);
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button40_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				//Paramterizovani upit
+				IQuery q = s.CreateQuery("select o from Cin as o "
+										+ "where o.CinId = :id "
+										);
+
+				q.SetInt32("id", 3);
+				
+
+
+				IList<Entiteti.Cin> cinovi = q.List<Entiteti.Cin>();
+
+				foreach (Entiteti.Cin o in cinovi)
+				{
+					MessageBox.Show("Naziv:" + o.Naziv);
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button43_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				IQuery q = s.CreateQuery("select o from AlarmniSistem o where o.SerijskiBr = 'K1271'");
+
+				//za slucaj da upit vraca samo jednu vrednost
+				AlarmniSistem o = q.UniqueResult<AlarmniSistem>();
+
+				MessageBox.Show(o.GodinaProizvodnje);
+				MessageBox.Show((o.DatumInstalacije).ToString());
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button44_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				IQuery q = s.CreateQuery("from Vestina");
+				q.SetFirstResult(3);
+				q.SetMaxResults(2);
+
+				IList<Vestina> vestine = q.List<Vestina>();
+
+				foreach (Vestina o in vestine)
+				{
+					MessageBox.Show(o.VestinaId.ToString());
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button45_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				IQuery q = s.CreateQuery("from Policajac");
+				q.SetFirstResult(3);
+				q.SetMaxResults(5);
+
+				IList<Policajac> policajci = q.List<Policajac>();
+
+				foreach (Policajac o in policajci)
+				{
+					MessageBox.Show(o.Ime.ToString());
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button46_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				IQuery q = s.CreateQuery("from Objekat");
+				q.SetFirstResult(1);
+				q.SetMaxResults(4);
+
+				IList<Objekat> objekti = q.List<Objekat>();
+
+				foreach (Objekat o in objekti)
+				{
+					MessageBox.Show(o.Povrsina.ToString());
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button47_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				ISQLQuery q = s.CreateSQLQuery("SELECT O.* FROM CIN O");
+				q.AddEntity(typeof(Cin));
+
+
+				IList<Cin> cinovi = q.List<Cin>();
+
+				foreach (Cin o in cinovi)
+				{
+					MessageBox.Show(o.Naziv.ToString());
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button48_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				ISQLQuery q = s.CreateSQLQuery("SELECT O.* FROM Vestina O");
+				q.AddEntity(typeof(Vestina));
+
+
+				IList<Vestina> vestine = q.List<Vestina>();
+
+				foreach (Vestina o in vestine)
+				{
+					MessageBox.Show(o.Naziv.ToString());
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button49_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				ISQLQuery q = s.CreateSQLQuery("SELECT O.* FROM Objekat O");
+				q.AddEntity(typeof(Objekat));
+
+
+				IList<Objekat> objekti = q.List<Objekat>();
+
+				foreach (Objekat o in objekti)
+				{
+					MessageBox.Show(o.TipObjekta.ToString());
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button50_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				IList<Policajac> policajci = s.QueryOver<Policajac>()
+												.Where(x => x.Pol == 'M')
+												.Where(x => x.PolicajacId >= 5)
+												.List<Policajac>();
+
+				foreach (Policajac o in policajci)
+				{
+					MessageBox.Show(o.Pol.ToString() + " , " + o.PolicajacId);
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button51_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				Policajac p = s.Load<Policajac>(2);
+
+				//originalna sesija se zatvara i raskida se veza izmedju objekta i sesije
+			
+
+				//objekat se modifikuje potpuno nezavisno od sesije
+				
+				p.Ime="Petar";
+
+				//otvara se nova sesija
+	
+
+			
+
+				//poziva se Update i objekat se povezuje sa novom sesijom
+				s.Update(p);
+
+				s.Flush();
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button52_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				Objekat o = s.Load<Objekat>(2);
+
+				//originalna sesija se zatvara i raskida se veza izmedju objekta i sesije
+
+
+				//objekat se modifikuje potpuno nezavisno od sesije
+
+				o.Povrsina = 300.55;
+
+				//otvara se nova sesija
+
+
+
+
+				//poziva se Update i objekat se povezuje sa novom sesijom
+				s.Update(o);
+
+				s.Flush();
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button53_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				Cin c = s.Load<Cin>(2);
+
+				//originalna sesija se zatvara i raskida se veza izmedju objekta i sesije
+
+
+				//objekat se modifikuje potpuno nezavisno od sesije
+
+				c.Naziv = "Snajperista";
+
+				//otvara se nova sesija
+
+
+
+
+				//poziva se Update i objekat se povezuje sa novom sesijom
+				s.Update(c);
+
+				s.Flush();
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button54_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				Policajac o = s.Load<Policajac>(41);
+
+				//brise se objekat iz baze ali ne i instanca objekta u memroiji
+				s.Delete(o);
+				//s.Delete("from Odeljenje");
+
+				s.Flush();
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button55_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				Objekat o = s.Load<Objekat>(9);
+
+				//brise se objekat iz baze ali ne i instanca objekta u memroiji
+				s.Delete(o);
+				//s.Delete("from Odeljenje");
+
+				s.Flush();
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button56_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				Cin o = s.Load<Cin>(28);
+
+				//brise se objekat iz baze ali ne i instanca objekta u memroiji
+				s.Delete(o);
+				//s.Delete("from Odeljenje");
+
+				s.Flush();
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button57_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				IEnumerable<Objekat> objekti = from p in s.Query<Objekat>()
+											   where (p.PripadaPolicjkojStanica.StanicaId == 2 || p.Povrsina >= 110)
+											   orderby p.PripadaPolicjkojStanica.StanicaId, p.Povrsina
+												  select p;
+
+				foreach (Objekat p in objekti)
+				{
+					MessageBox.Show(p.ObjekatId.ToString());
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button58_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				IEnumerable<Policajac> policajci = from p in s.Query<Policajac>()
+												   where (p.Pol == 'M')
+												   orderby p.Pol
+											   select p;
+
+				foreach (Policajac p in policajci)
+				{
+					MessageBox.Show(p.Ime.ToString());
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 
 		private void button59_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				ISession s = DataLayer.GetSession();
 
+				IEnumerable<Vestina> vestine = from p in s.Query<Vestina>()
+												   where (p.PripadaPolicajcu.PolicajacId == 24)
+												   orderby p.PripadaPolicajcu.PolicajacId
+												   select p;
+
+				foreach (Vestina p in vestine)
+				{
+					MessageBox.Show(p.Naziv.ToString());
+				}
+
+				s.Close();
+
+			}
+			catch (Exception ec)
+			{
+				MessageBox.Show(ec.Message);
+			}
 		}
 	}
 	}
