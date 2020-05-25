@@ -36,7 +36,7 @@ namespace Uprava
 				var cfg = OracleManagedDataClientConfiguration.Oracle10
 					.ConnectionString(c =>
 						c.Is(
-							"DATA SOURCE=gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;PERSIST SECURITY INFO=True; USER ID=S16462;PASSWORD=davidcar304011"));
+							"DATA SOURCE=gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;PERSIST SECURITY INFO=True; USER ID=S16630;PASSWORD=igor98"));
 				return Fluently.Configure()
 					.Database(cfg.ShowSql())
 					.Mappings(m => m.FluentMappings.AddFromAssemblyOf<PolicijskaStanicaMapiranja>())

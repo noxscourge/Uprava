@@ -45,33 +45,33 @@ namespace Uprava
 		{
 			try
 			{
-				//ISession s = DataLayer.GetSession();
-				//IList<Policajac> listaPolicajca = s.QueryOver<Policajac>().List<Policajac>();
+				ISession s = DataLayer.GetSession();
+				IList<Policajac> listaPolicajca = s.QueryOver<Policajac>().List<Policajac>();
 
-				//foreach (Policajac pol in listaPolicajca)
-				//{
-				//	if (pol.GetType() == typeof(PozornikPolicajac))
-				//	{
-				//		PozornikPolicajac pozornik = (PozornikPolicajac)pol;
-				//		MessageBox.Show(pozornik.ToString());
-				//	}
+				foreach (Policajac pol in listaPolicajca)
+				{
+					if (pol.GetType() == typeof(PozornikPolicajac))
+					{
+						PozornikPolicajac pozornik = (PozornikPolicajac)pol;
+						MessageBox.Show(pozornik.ToString());
+					}
 
-				//	else if (pol.GetType() == typeof(VanredniPolicajac))
-				//	{
-				//		VanredniPolicajac vanredni = (VanredniPolicajac)pol;
-				//		MessageBox.Show(vanredni.ToString());
-				//	}
-				//	else if (pol.GetType() == typeof(SkolskiPolicajac))
-				//	{
-				//		SkolskiPolicajac skolski = (SkolskiPolicajac)pol;
-				//		MessageBox.Show(skolski.ToString());
-				//	}
-				//	else
-				//	{
-				//		MessageBox.Show(pol.ToString());
-				//	}
-				//}
-				//s.Close();
+					else if (pol.GetType() == typeof(VanredniPolicajac))
+					{
+						VanredniPolicajac vanredni = (VanredniPolicajac)pol;
+						MessageBox.Show(vanredni.ToString());
+					}
+					else if (pol.GetType() == typeof(SkolskiPolicajac))
+					{
+						SkolskiPolicajac skolski = (SkolskiPolicajac)pol;
+						MessageBox.Show(skolski.ToString());
+					}
+					else
+					{
+						MessageBox.Show(pol.ToString());
+					}
+				}
+				s.Close();
 			}
 			catch (Exception exception)
 			{
@@ -89,7 +89,7 @@ namespace Uprava
 
 				Uprava.Entiteti.PolicijskaStanica p = s.Load<Uprava.Entiteti.PolicijskaStanica>(1);
 
-				foreach (Policajac pol in p.Policajci)
+				foreach (PozornikPolicajac pol in p.Policajci)
 				{
 					MessageBox.Show(pol.Ime + " " + pol.Kurs);
 				}
@@ -459,7 +459,7 @@ namespace Uprava
             try
             {
                 ISession s = DataLayer.GetSession();
-                Uprava.Entiteti.Policajac p = s.Load<Uprava.Entiteti.Policajac>(1);
+                Uprava.Entiteti.PozornikPolicajac p = s.Load<Uprava.Entiteti.PozornikPolicajac>(1);
 
                 foreach (Cin c in p.Cinovi)
                 {
@@ -527,7 +527,7 @@ namespace Uprava
             try
             {
                 ISession s = DataLayer.GetSession();
-                Uprava.Entiteti.Policajac p = s.Load<Uprava.Entiteti.Policajac>(9);
+                Uprava.Entiteti.PozornikPolicajac p = s.Load<Uprava.Entiteti.PozornikPolicajac>(9);
 
 
                 MessageBox.Show(p.Ime + " " + p.Jmbg);
@@ -597,7 +597,7 @@ namespace Uprava
 
 
 
-				Policajac pol = s.Load<Policajac>(11);
+				PozornikPolicajac pol = s.Load<PozornikPolicajac>(11);
 
 				Cin c = new Cin();
 
@@ -663,7 +663,7 @@ namespace Uprava
 			{
 				ISession s = DataLayer.GetSession();
 
-				Policajac p = new Policajac();
+				PozornikPolicajac p = new PozornikPolicajac();
 				PolicijskaStanica ps = s.Load<PolicijskaStanica>(1);
 
 				p.Adresa = "Neznanog junaka";
@@ -769,7 +769,7 @@ namespace Uprava
 			try
 			{
 				ISession s = DataLayer.GetSession();
-				IList<Policajac> policajci = s.QueryOver<Policajac>().Where(p => p.PolicajacId == 5).List<Policajac>();
+				IList<PozornikPolicajac> policajci = s.QueryOver<PozornikPolicajac>().Where(p => p.PolicajacId == 5).List<PozornikPolicajac>();
 
 				SkolskiPolicajac skolski = (SkolskiPolicajac) policajci[0];
 				MessageBox.Show(skolski.ToString());
@@ -807,7 +807,7 @@ namespace Uprava
 				{
 					ISession s = DataLayer.GetSession();
 
-					Policajac pol = s.Get<Policajac>(11);
+					PozornikPolicajac pol = s.Get<PozornikPolicajac>(11);
 
 					//obrada podataka o odeljenju
 

@@ -15,8 +15,8 @@ namespace Uprava.Mapiranja
             Table("SKOLSKI_POLICAJAC");
 
             KeyColumn("POLICAJACID");
-            //DiscriminatorValue("SKOLSKI");
-
+            DiscriminatorValue("SKOLSKI");
+            
 
             Map(x => x.NazivSkole, "NAZIV_SKOLE");
             Map(x => x.AdresaSkole, "ADRESA");

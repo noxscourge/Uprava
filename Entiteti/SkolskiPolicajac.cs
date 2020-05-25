@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uprava.Entiteti
 {
-    public class SkolskiPolicajac:Policajac
+    public class SkolskiPolicajac:PozornikPolicajac
     {
 		public virtual string SrednjaIliOsnovna { get; set; }
         public virtual string NazivSkole { get; set; }
